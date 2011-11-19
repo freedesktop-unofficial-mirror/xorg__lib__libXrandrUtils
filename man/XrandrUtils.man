@@ -1,0 +1,32 @@
+.de TQ
+.br
+.ns
+.TP \\$1
+..
+.TH XRANDR-UTILS __libmansuffix__ __vendorversion__
+
+.SH NAME
+ XrandrUtils \- Wrapper library for libXrandr.
+.SH SYNTAX
+\&#include <X11/extensions/XrandrUtils.h>
+.nf
+.sp
+
+.SH DATATYPES
+
+typedef struct {
+};
+
+.SH DESCRIPTION
+.B XrandrUtils
+is a high level library designed to wrapper the Xrandr library with
+a more convenient API for doing common screen configuration operations.
+
+.SH FUNCTIONS
+.PP
+
+.SH RESTRICTIONS
+.B XrandrUtils
+will remain upward compatible after the current 1.0 release.
+.SH AUTHOR
+Keith Packard, Intel; Bryce Harrington, Canonical.
