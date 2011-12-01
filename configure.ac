@@ -55,6 +55,7 @@ PKG_CHECK_MODULES(RANDR_UTILS, x11 xrandr >= 1.3 xrender xproto >= 7.0.17)
 
 AC_CONFIG_FILES([
 	Makefile
+	examples/Makefile
 	man/Makefile
 	src/Makefile
 	xrandr-utils.pc])
