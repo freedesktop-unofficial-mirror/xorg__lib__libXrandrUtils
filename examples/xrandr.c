@@ -210,10 +210,6 @@ reflection_name (Rotation rotation)
     return "invalid reflection";
 }
 
-typedef struct {
-    int	    x, y, width, height;
-} rectangle_t;
-
 typedef enum _changes {
     changes_none = 0,
     changes_crtc = (1 << 0),
