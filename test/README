@@ -1,0 +1,14 @@
+                       libXrandrUtils test suite
+
+This suite contains a set of tests to verify the behavior of the
+XrandrUtils API.  This suite follows the conventions of the X server
+test suite.
+
+= How to run the tests =
+Run "make check" in the test directory.  This will compile the tests and
+execute them in the order specified by the TESTS variable in
+test/Makefile.am.
+
+== Adding a new test ==
+When adding a new test, ensure that you add a short description of what
+the test does and what the expected outcome is.

@@ -58,5 +58,6 @@ AC_CONFIG_FILES([
 	examples/Makefile
 	man/Makefile
 	src/Makefile
+	test/Makefile
 	xrandr-utils.pc])
 AC_OUTPUT

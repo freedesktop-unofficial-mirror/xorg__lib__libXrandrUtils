@@ -19,7 +19,7 @@
 #  TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 #  PERFORMANCE OF THIS SOFTWARE.
 
-SUBDIRS = examples man src
+SUBDIRS = examples man src test
 
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = xrandr-utils.pc
