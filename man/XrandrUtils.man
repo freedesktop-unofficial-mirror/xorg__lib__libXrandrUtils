@@ -14,8 +14,27 @@
 
 .SH DATATYPES
 
+.PP
+.B Relations and Geometries
+.PP
+.nf
+typedef enum {
+  relation_left_of,
+  relation_right_of,
+  relation_above,
+  relation_below,
+  relation_same_as,
+} XRURelation;
+
 typedef struct {
-};
+  int     x1, y1, x2, y2;
+} XRUBox;
+
+typedef struct {
+  int     x, y;
+} XRUPoint;
+.sp
+.fi
 
 .SH DESCRIPTION
 .B XrandrUtils
