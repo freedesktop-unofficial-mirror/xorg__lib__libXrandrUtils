@@ -39,6 +39,7 @@
 #include <math.h>
 
 #include "config.h"
+#include "XrandrUtils.h"
 
 static char	*program_name;
 static Display	*dpy;
@@ -209,25 +210,9 @@ reflection_name (Rotation rotation)
     return "invalid reflection";
 }
 
-typedef enum _relation {
-    relation_left_of,
-    relation_right_of,
-    relation_above,
-    relation_below,
-    relation_same_as,
-} relation_t;
-
 typedef struct {
     int	    x, y, width, height;
 } rectangle_t;
-
-typedef struct {
-    int	    x1, y1, x2, y2;
-} box_t;
-
-typedef struct {
-    int	    x, y;
-} point_t;
 
 typedef enum _changes {
     changes_none = 0,
@@ -315,7 +300,7 @@ struct _output {
     
     name_t	    addmode;
 
-    relation_t	    relation;
+    XRURelation	    relation;
     char	    *relative_to;
 
     int		    x, y;
@@ -446,10 +431,10 @@ transform_point (XTransform *transform, double *xp, double *yp)
 }
 
 static void
-path_bounds (XTransform *transform, point_t *points, int npoints, box_t *box)
+path_bounds (XTransform *transform, XRUPoint *points, int npoints, XRUBox *box)
 {
     int	    i;
-    box_t   point;
+    XRUBox  point;
 
     for (i = 0; i < npoints; i++) {
 	double	x, y;
@@ -474,9 +459,9 @@ path_bounds (XTransform *transform, point_t *points, int npoints, box_t *box)
 static void
 mode_geometry (XRRModeInfo *mode_info, Rotation rotation,
 	       XTransform *transform,
-	       box_t *bounds)
+	       XRUBox *bounds)
 {
-    point_t rect[4];
+    XRUPoint rect[4];
     int	width = mode_width (mode_info, rotation);
     int height = mode_height (mode_info, rotation);
 
@@ -1573,7 +1558,7 @@ apply (void)
 	{
 	    XRRModeInfo	*old_mode = find_mode_by_xid (crtc_info->mode);
 	    int x, y, w, h;
-	    box_t bounds;
+	    XRUBox bounds;
 
 	    if (!old_mode) 
 		panic (RRSetConfigFailed, crtc);
@@ -1937,8 +1922,8 @@ set_screen_size (void)
     {
 	XRRModeInfo *mode_info = output->mode_info;
 	int	    x, y, w, h;
-	box_t	    bounds;
-	
+	XRUBox	    bounds;
+
 	if (!mode_info) continue;
 	
 	mode_geometry (mode_info, output->rotation,
